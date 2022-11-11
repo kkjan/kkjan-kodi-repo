@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.swango" name="SWAN Go" version="0.1.5~alpha2" provider-name="janschml">
+<addon id="plugin.video.swango" name="SWAN Go" version="0.1.5~alpha3" provider-name="janschml">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" version="2.18.4" />
@@ -11,7 +11,7 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.service" library="service.py" />
-  <extension point="xbmc.python.library" library="resources/lib/libraryfunctions.py" />
+  <extension point="xbmc.python.library" library="libraryfunctions.py" />
   <extension point="xbmc.addon.metadata">
     <summary>SWAN Go</summary>
     <description>Plugin to generate playlist and EPG XML file for Simple client from SWAN Go service</description>
