@@ -1,32 +1,12 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<addons><addon id="kkjan.kkjanius.sk" name="kkjan kodi Repository" version="0.1.0" provider-name="kkjan">
-    <extension point="xbmc.addon.repository" name="kkjan kodi Repository">
-        <info compressed="false">https://raw.githubusercontent.com/kkjan/kkjan-kodi-repo/main/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/kkjan/kkjan-kodi-repo/main/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/kkjan/kkjan-kodi-repo/main/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>kkjan Repository</summary>
-        <description>A repository of add-ons that kkjan developed for a personal Kodi system</description>
-        <disclaimer />
-        <news>0.1.0
-- initial</news>
-        <platform>all</platform>
-        <language />
-        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-        <forum />
-        <website />
-        <source>https://github.com/kkjan/kkjan-kodi-repo-addon</source>
-        <email>ja dot schm at gmail dot com</email>
-    </extension>
-</addon><addon id="plugin.video.4ka.tv" name="4KA TV" version="0.1.5~alpha5" provider-name="janschml">
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.4ka.tv" name="4KA TV" version="0.1.5~alpha5" provider-name="janschml">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" version="2.18.4" />
     <import addon="script.module.dateutil" version="2.8.1" />
     <import addon="script.module.routing" version="0.2.3" />
-    <import addon="script.common.plugin.cache" version="2.6.3" />
-    <import addon="script.module.web-pdb" version="1.5.6" />
+    <import addon="script.common.plugin.cache" version="2.6.3"/>
+    <import addon="script.module.web-pdb" version="1.5.6"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="main.py">
     <provides>video</provides>
@@ -62,4 +42,4 @@
       <icon>resources/icon.png</icon>
     </assets>
   </extension>
-</addon></addons>
+</addon>
