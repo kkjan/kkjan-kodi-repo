@@ -21,14 +21,13 @@
         <source>https://github.com/kkjan/kkjan-kodi-repo-addon</source>
         <email>ja dot schm at gmail dot com</email>
     </extension>
-</addon><addon id="plugin.video.4ka.tv" name="4KA TV" version="0.1.5~alpha5" provider-name="janschml">
+</addon><addon id="plugin.video.4ka.tv" name="4KA TV" version="0.1.7~alpha9" provider-name="janschml">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" version="2.18.4" />
     <import addon="script.module.dateutil" version="2.8.1" />
     <import addon="script.module.routing" version="0.2.3" />
     <import addon="script.common.plugin.cache" version="2.6.3" />
-    <import addon="script.module.web-pdb" version="1.5.6" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="main.py">
     <provides>video</provides>
@@ -41,6 +40,8 @@
     <description lang="sk">Plugin na generovanie playlistu a EPG XML súboru pre IPTV Simple client pre službu 4KA TV</description>
     <description lang="cz">Plugin pro generování playlistu a EPG XML súboru pro IPTV Simple client pro službu 4KA TV</description>
     <platform>all</platform>
+    <news>v0.1.7~alpha9 (2023-03-02)
+      - Added download from archive and live stream possibility</news>
     <news>v0.1.5~alpha5 (2022-11-20)
       -renname plugin, new name  4KA TV
       - Added IPTV Manager support
@@ -64,47 +65,59 @@
       <icon>resources/icon.png</icon>
     </assets>
   </extension>
-</addon><addon id="plugin.video.iptv.recorder" version="0.2.0" name="IPTV Recorder" provider-name="primaeval, Chychy, Dob!, Publish3r">
-<requires>
-  <import addon="xbmc.python" version="3.0.0" />
-  <import addon="script.module.xbmcswift2" />
-  <import addon="script.module.requests" />
-  <import addon="script.module.chardet" />
-  <import addon="script.module.pytz" />
-  <import addon="script.module.kodi-six" />
-</requires>
-<extension point="xbmc.python.pluginsource" library="main.py">
-  <provides>video</provides>
-</extension>
-<extension point="xbmc.python.script" library="default.py">
+</addon><addon id="plugin.video.iptv.recorder" version="0.3.1~alpha3" name="IPTV Recorder" provider-name="primaeval, Chychy, Dob!, Publish3r">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.xbmcswift2" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.chardet" />
+    <import addon="script.module.pytz" />
+    <import addon="script.module.kodi-six" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.python.script" library="default.py">
     <provides>executable</provides>
-</extension>
-<extension point="kodi.context.item">
-<menu id="kodi.core.main">
-  <item library="context.py">
-    <label>IPTV Recorder Timer</label>
-    <visible>Window.isActive(tvchannels)</visible>
-  </item>
-  <item library="contextEPG.py">
-    <label>Schedule IPTV Recorder</label>
-    <visible>Window.isActive(tvguide)</visible>
-  </item>
-</menu>
-</extension>
-<extension point="xbmc.service" library="server.py" start="login" />
-<extension point="xbmc.addon.metadata">
-  <summary lang="en">Record from IPTV Simple Client or xmltv/m3u with ffmpeg.</summary>
-  <description lang="en">
+  </extension>
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="context.py">
+        <label>IPTV Recorder Timer</label>
+        <visible>Window.isActive(tvchannels)</visible>
+      </item>
+      <item library="contextEPG.py">
+        <label>Schedule IPTV Recorder</label>
+        <visible>Window.isActive(tvguide)</visible>
+      </item>
+    </menu>
+  </extension>
+  <extension point="xbmc.service" library="server.py" start="login" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Record from IPTV Simple Client or xmltv/m3u with ffmpeg.</summary>
+    <description lang="en">
 Set your recording path and ffmpeg location.
 On Android ffmpeg will be copied to /data/data to be runnable.
 Complex stream handling might need an extra script instead of ffmpeg.
 ffmpeg simply copies the stream into a transport stream container.
-</description>
-<disclaimer lang="en">Make sure recording streams is legal in your country.</disclaimer>
-<source>https://github.com/Dobi-Dev/plugin.video.iptv.recorder</source>
-<forum>https://forum.kodi.tv/showthread.php?tid=329991</forum>
-<language>en fr de</language>
-<news>
+    </description>
+    <disclaimer lang="en">Make sure recording streams is legal in your country.</disclaimer>
+    <source>https://github.com/Dobi-Dev/plugin.video.iptv.recorder</source>
+    <forum>https://forum.kodi.tv/showthread.php?tid=329991</forum>
+    <language>en fr de</language>
+    <news>
+  version 0.3.1~alpha3
+- Fix renew job after reboot (Task in AlarmClock scheduler is lost in Kodi after reboot)
+- Implement "Cron for Kodi" addon: Now is possible use Cron for Kodi addon (if it's installed) to schedule recording instead scheduler/cron
+    </news>
+    <news>
+  version 0.3.1~alpha2
+- settings.xml converted to new format
+- Implemented cron for linux system for schedule job
+- Fix xbmc import in task scheduler/cron job (now job for task scheduler/cron no import any xbmc module)
+- Fix schedule record task from EPG, when python locale and kodi translation of months names are diferent (for example in slovak in python locale is 1.marec (1. march) and  in kodi translation is 1.marca)
+    </news>
+    <news>
 version 0.2.0
 - Compatibility with Kodi Matrix.
 - Add some missing translations.
@@ -117,12 +130,12 @@ version 0.2.0
 - Reducing default startup time to 20 seconds.
 - Add error messag when trying to access database not created.
 - Exit the service smoothly and fastly if the user request Kodi to exit before the startup delay.
-</news>
-<assets>
-  <icon>icon.png</icon>
-  <screenshot>resources/screenshots/screenshot-00.jpg</screenshot>
-  <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-  <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-</assets>
-</extension>
+    </news>
+    <assets>
+      <icon>icon.png</icon>
+      <screenshot>resources/screenshots/screenshot-00.jpg</screenshot>
+      <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+      <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+    </assets>
+  </extension>
 </addon></addons>
